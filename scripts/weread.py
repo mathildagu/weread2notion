@@ -73,6 +73,7 @@ def get_read_info(bookId):
     params = dict(bookId=bookId, readingDetail=1, readingBookIndex=1, finishedDate=1)
     r = session.get(WEREAD_READ_INFO_URL, params=params)
     if r.ok:
+        print("READ_INFO", bookId, r.json())
         return r.json()
     return None
 
@@ -85,6 +86,7 @@ def get_bookinfo(bookId):
     isbn = ""
     if r.ok:
         data = r.json()
+        print("BOOK_INFO", bookId, data)
         isbn = data.get("isbn","")
         newRating = data.get("newRating", 0) / 1000
         return (isbn, newRating)
@@ -98,7 +100,8 @@ def get_review_list(bookId):
     session.get(WEREAD_URL)
     params = dict(bookId=bookId, listType=11, mine=1, syncKey=0)
     r = session.get(WEREAD_REVIEW_LIST_URL, params=params)
-
+    
+    print("REVIEW_LIST", bookId, r.json())
     reviews = r.json().get("reviews")
     summary = list(filter(lambda x: x.get("review").get("type") == 4, reviews))
     reviews = list(filter(lambda x: x.get("review").get("type") == 1, reviews))
