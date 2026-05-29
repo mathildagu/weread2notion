@@ -410,8 +410,8 @@ if __name__ == "__main__":
     if books != None:
         for index, book in enumerate(books):
             sort = book["sort"]
-            if sort <= latest_sort:
-                continue
+            #if sort <= latest_sort:
+                #continue
             book = book.get("book")
             title = book.get("title")
             cover = book.get("cover").replace("/s_", "/t7_")
