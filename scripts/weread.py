@@ -163,6 +163,14 @@ def insert_to_notion(bookName, bookId, cover, sort, author, isbn, rating, catego
         markedStatus = read_info.get("markedStatus", 0)
         readingTime = read_info.get("readingTime", 0)
         readingProgress = read_info.get("readingProgress", 0)
+        
+        if readingProgress is None:
+            readingBookIndex = read_info.get("readingBookIndex", 0)
+            readingBookCount = read_info.get("readingBookCount", 0)
+            if readingBookCount > 0:
+                readingProgress = round(readingBookIndex / readingBookCount * 100, 2)
+            else:
+                readingProgress = 0
         format_time = ""
         hour = readingTime // 3600
         if hour > 0:
