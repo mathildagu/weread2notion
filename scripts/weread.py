@@ -411,6 +411,7 @@ if __name__ == "__main__":
         for index, book in enumerate(books):
             sort = book["sort"]
             if sort <= latest_sort:
+                print(f"跳过: {book['book']['title']} sort={sort}")
                 continue
             book = book.get("book")
             title = book.get("title")
