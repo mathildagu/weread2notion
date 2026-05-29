@@ -418,8 +418,9 @@ if __name__ == "__main__":
             categories = book.get("categories")
             if categories != None:
                 categories = [x["title"] for x in categories]
-             print(f"正在同步 {title}")
-             print(f"bookId = {bookId}")
+            print(f"正在同步 {title} ,一共{len(books)}本，当前是第{index+1}本。")
+            print(f"bookId = {bookId}")
+            print(f"sort = {sort}")
             check(bookId)
             isbn, rating = get_bookinfo(bookId)
             id = insert_to_notion(
