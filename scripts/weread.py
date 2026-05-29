@@ -400,6 +400,7 @@ def extract_page_id():
         raise Exception(f"获取NotionID失败，请检查输入的Url是否正确")
 
 if __name__ == "__main__":
+    print("我真的改成功了")
     parser = argparse.ArgumentParser()
     options = parser.parse_args()
     weread_cookie = get_cookie()
