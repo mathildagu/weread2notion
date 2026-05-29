@@ -391,7 +391,6 @@ def extract_page_id():
         raise Exception(f"获取NotionID失败，请检查输入的Url是否正确")
 
 if __name__ == "__main__":
-    print("我真的改成功了")
     parser = argparse.ArgumentParser()
     options = parser.parse_args()
     weread_cookie = get_cookie()
@@ -403,15 +402,11 @@ if __name__ == "__main__":
     session.get(WEREAD_URL)
     
     latest_sort = get_sort()
-    print("latest_sort =", latest_sort)
     books = get_notebooklist()
-    print("books =", books is not None)
-    print("books数量 =", len(books) if books else 0)
     if books != None:
         for index, book in enumerate(books):
             sort = book["sort"]
             if sort <= latest_sort:
-                print(f"跳过: {book['book']['title']} sort={sort}")
                 continue
             book = book.get("book")
             title = book.get("title")
@@ -422,8 +417,6 @@ if __name__ == "__main__":
             if categories != None:
                 categories = [x["title"] for x in categories]
             print(f"正在同步 {title} ,一共{len(books)}本，当前是第{index+1}本。")
-            print(f"bookId = {bookId}")
-            print(f"sort = {sort}")
             check(bookId)
             isbn, rating = get_bookinfo(bookId)
             id = insert_to_notion(
