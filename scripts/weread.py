@@ -403,8 +403,10 @@ if __name__ == "__main__":
     session.get(WEREAD_URL)
     
     latest_sort = get_sort()
+    print("latest_sort =", latest_sort)
     books = get_notebooklist()
-    
+    print("books =", books is not None)
+    print("books数量 =", len(books) if books else 0)
     if books != None:
         for index, book in enumerate(books):
             sort = book["sort"]
