@@ -49,7 +49,9 @@ def parse_cookie_string(cookie_string):
     return cookiejar
 
 def refresh_token(exception):
+    print("触发重试:", exception)
     session.get(WEREAD_URL)
+    return True
 
 @retry(stop_max_attempt_number=3, wait_fixed=5000,retry_on_exception=refresh_token)
 def get_bookmark_list(bookId):
