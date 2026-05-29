@@ -401,8 +401,10 @@ if __name__ == "__main__":
     
     print("A")
     latest_sort = get_sort()
+    print("latest_sort =", latest_sort)
     print("B")
     books = get_notebooklist()
+    print("书本数量 =", len(books))
     print("C")
     
     if books != None:
